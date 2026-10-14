@@ -94,8 +94,7 @@ void MemData<vector_type>::reset_memory(size_t size, size_t start_index) {
         for (size_t i = 0; i < copy_size; i++) {
             if (i + start_index < old_capacity) {
                 _data[i] = _data[(i + start_index)];
-            }
-            else {
+            } else {
                 _data[i] = temp[(i + start_index) % old_capacity];
             }
         }
@@ -175,14 +174,11 @@ template <typename vector_type>
 bool MemData<vector_type>::operator==(const MemData& other) const noexcept {
     if (_size != other._size) {
         return false;
-    }
-    else if (_data == other._data) {
+    } else if (_data == other._data) {
         return true;
-    }
-    else if (_size == 0) {
+    } else if (_size == 0) {
         return true;
-    }
-    else {
+    } else {
         for (size_t i = 0; i < _size; i++) {
             if (_data[i] != other._data[i]) {
                 return false;
