@@ -8,14 +8,14 @@ int calculate_capacity(size_t size) {
 }
 
 template <typename vector_type>
-MemData<vector_type>::MemData(size_t size) {					
+MemData<vector_type>::MemData(size_t size) {
     _data = nullptr;
     set_memory(size);
     _size = 0;
 }
 
 template <typename vector_type>
-MemData<vector_type>::MemData(std::initializer_list<vector_type> list) {	
+MemData<vector_type>::MemData(std::initializer_list<vector_type> list) {
     _data = nullptr;
     set_memory(list.size());
     for (size_t i = 0; i < _size; i++) {
@@ -24,7 +24,7 @@ MemData<vector_type>::MemData(std::initializer_list<vector_type> list) {
 }
 
 template <typename vector_type>
-MemData<vector_type>::MemData(const vector_type* array, size_t size) {		
+MemData<vector_type>::MemData(const vector_type* array, size_t size) {
     _size = size;
     _data = nullptr;
     set_memory(_size);
@@ -34,7 +34,7 @@ MemData<vector_type>::MemData(const vector_type* array, size_t size) {
 }
 
 template <typename vector_type>
-MemData<vector_type>::MemData(const MemData& other) {					
+MemData<vector_type>::MemData(const MemData& other) {
     _size = other._size;
     _data = nullptr;
     set_memory(_size);
@@ -44,7 +44,7 @@ MemData<vector_type>::MemData(const MemData& other) {
 }
 
 template <typename vector_type>
-MemData<vector_type>::MemData(MemData&& other) noexcept {				
+MemData<vector_type>::MemData(MemData&& other) noexcept {
     _size = other._size;
     _capacity = other._capacity;
     _data = other._data;
@@ -61,7 +61,7 @@ MemData<vector_type>::~MemData() {
 }
 
 template <typename vector_type>
-void MemData<vector_type>::set_memory(size_t size) noexcept {				
+void MemData<vector_type>::set_memory(size_t size) noexcept {
     _size = size;
     _capacity = calculate_capacity(size);
     if (_data) {
@@ -71,7 +71,7 @@ void MemData<vector_type>::set_memory(size_t size) noexcept {
 }
 
 template <typename vector_type>
-void MemData<vector_type>::reset_memory(size_t size, size_t start_index) {	
+void MemData<vector_type>::reset_memory(size_t size, size_t start_index) {
     if (start_index >= size) {
         throw std::invalid_argument("ERROR: Can't reset memory! start_index >= size");
     }
@@ -110,13 +110,13 @@ void MemData<vector_type>::reset_memory(size_t size, size_t start_index) {
 }
 
 template <typename vector_type>
-void MemData<vector_type>::clear_memory() noexcept {					
+void MemData<vector_type>::clear_memory() noexcept {
     set_memory(0);
 }
 
 template <typename vector_type>
 void MemData<vector_type>::shrink_to_fit(size_t size, size_t start_index) {
-    if (size >= _capacity) return;        
+    if (size >= _capacity) return;
     if (size == 0) {
         delete[] _data;
         _data = new vector_type[0];
@@ -136,7 +136,7 @@ void MemData<vector_type>::shrink_to_fit(size_t size, size_t start_index) {
 }
 
 template <typename vector_type>
-MemData<vector_type>& MemData<vector_type>::operator=(const MemData& other) noexcept {	
+MemData<vector_type>& MemData<vector_type>::operator=(const MemData& other) noexcept {
     if (this != &other) {
         _size = other._size;
         _capacity = other._capacity;
@@ -152,7 +152,7 @@ MemData<vector_type>& MemData<vector_type>::operator=(const MemData& other) noex
 }
 
 template <typename vector_type>
-MemData<vector_type>& MemData<vector_type>::operator=(MemData&& other) noexcept {		
+MemData<vector_type>& MemData<vector_type>::operator=(MemData&& other) noexcept {
     if (this != &other) {
         _size = other._size;
         _capacity = other._capacity;
@@ -166,7 +166,7 @@ MemData<vector_type>& MemData<vector_type>::operator=(MemData&& other) noexcept 
 }
 
 template <typename vector_type>
-bool MemData<vector_type>::operator==(const MemData& other) const noexcept {			
+bool MemData<vector_type>::operator==(const MemData& other) const noexcept {
     if (_size != other._size) {
         return false;
     }
@@ -187,7 +187,7 @@ bool MemData<vector_type>::operator==(const MemData& other) const noexcept {
 }
 
 template <typename vector_type>
-void quick_sort(MemData<vector_type>& md) {			
+void quick_sort(MemData<vector_type>& md) {
     if (md._size <= 1) {
         return;
     }
@@ -195,7 +195,7 @@ void quick_sort(MemData<vector_type>& md) {
 }
 
 template <typename vector_type>
-void shuffle(MemData<vector_type>& md) {			
+void shuffle(MemData<vector_type>& md) {
     if (md._size <= 1) {
         return;
     }
@@ -207,7 +207,7 @@ void shuffle(MemData<vector_type>& md) {
 }
 
 template <typename vector_type>
-int partition(vector_type* data, int left, int right) { 
+int partition(vector_type* data, int left, int right) {
     vector_type pivot = data[(left + right) / 2];
     int i = left;
     int j = right;
