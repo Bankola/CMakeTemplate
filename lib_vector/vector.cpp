@@ -13,8 +13,10 @@ Vector<vector_type>::Vector(size_t size) {
         _back = 0;
     }
 }
+
 template<typename vector_type>
-Vector<vector_type>::Vector(std::initializer_list<vector_type> list) {
+Vector<vector_type>::Vector(
+    std::initializer_list<vector_type> list) {
     MemData<vector_type> temp(list);
     _mem = (std::move(temp));
     _front = 0;
@@ -24,8 +26,10 @@ Vector<vector_type>::Vector(std::initializer_list<vector_type> list) {
         _back = 0;
     }
 }
+
 template<typename vector_type>
-Vector<vector_type>::Vector(vector_type* array, size_t size) {
+Vector<vector_type>::Vector(
+    vector_type* array, size_t size) {
     MemData<vector_type> temp(array, size);
     _mem = (std::move(temp));
     _front = 0;
@@ -35,14 +39,18 @@ Vector<vector_type>::Vector(vector_type* array, size_t size) {
         _back = 0;
     }
 }
+
 template<typename vector_type>
-Vector<vector_type>::Vector(const Vector<vector_type>& other) {
+Vector<vector_type>::Vector(
+    const Vector<vector_type>& other) {
     _mem = other._mem;
     _front = other._front;
     _back = other._back;
 }
+
 template<typename vector_type>
-Vector<vector_type>::Vector(Vector<vector_type>&& other) noexcept {
+Vector<vector_type>::Vector(
+    Vector<vector_type>&& other) noexcept {
     _mem = std::move(other._mem);
     _front = other._front;
     other._front = 0;
@@ -51,7 +59,8 @@ Vector<vector_type>::Vector(Vector<vector_type>&& other) noexcept {
 }
 
 template<typename vector_type>
-void Vector<vector_type>::push_front(vector_type element) noexcept {
+void Vector<vector_type>::push_front(
+    vector_type element) noexcept {
     _mem._size++;
     if (_mem._size > 1) {
         _front = (_front + _mem._capacity - 1) % _mem._capacity;
@@ -63,14 +72,18 @@ void Vector<vector_type>::push_front(vector_type element) noexcept {
         _back = _mem._size - 1;
     }
 }
+
 template<typename vector_type>
-void Vector<vector_type>::push_front_many(vector_type* elements, size_t size) noexcept {
+void Vector<vector_type>::push_front_many(
+    vector_type* elements, size_t size) noexcept {
     for (int i = size - 1; i >= 0; i--) {
         push_front(elements[i]);
     }
 }
+
 template<typename vector_type>
-void Vector<vector_type>::push_back(vector_type element) noexcept {
+void Vector<vector_type>::push_back(
+    vector_type element) noexcept {
     _mem._size++;
     if (_mem._size > 1) {
         _back = (_back + 1) % _mem._capacity;
@@ -82,16 +95,21 @@ void Vector<vector_type>::push_back(vector_type element) noexcept {
         _back = _mem._size - 1;
     }
 }
+
 template<typename vector_type>
-void Vector<vector_type>::push_back_many(vector_type* elements, size_t size) noexcept {
+void Vector<vector_type>::push_back_many(
+    vector_type* elements, size_t size) noexcept {
     for (int i = 0; i < size; i++) {
         push_back(elements[i]);
     }
 }
+
 template<typename vector_type>
-void Vector<vector_type>::insert(vector_type element, size_t i) {
+void Vector<vector_type>::insert(
+    vector_type element, size_t i) {
     if (i > _mem._size) {
-        throw std::out_of_range("ERROR: Insert index out of range!");
+        throw std::out_of_range(
+            "ERROR: Insert index out of range!");
     } else {
         if (i == 0) {
             push_front(element);
@@ -112,10 +130,13 @@ void Vector<vector_type>::insert(vector_type element, size_t i) {
         }
     }
 }
+
 template<typename vector_type>
-void Vector<vector_type>::insert_many(vector_type* elements, size_t size, size_t i) {
+void Vector<vector_type>::insert_many(
+    vector_type* elements, size_t size, size_t i) {
     if (i > _mem._size) {
-        throw std::out_of_range("ERROR: Insert (many) index out of range!");
+        throw std::out_of_range(
+            "ERROR: Insert (many) index out of range!");
     } else {
         for (int j = 0; j < size; j++) {
             insert(elements[j], i + j);
@@ -126,7 +147,8 @@ void Vector<vector_type>::insert_many(vector_type* elements, size_t size, size_t
 template<typename vector_type>
 void Vector<vector_type>::pop_front() {
     if (_mem._size == 0) {
-        throw std::logic_error("ERROR: Empty vector! Can't pop front");
+        throw std::logic_error(
+            "ERROR: Empty vector! Can't pop front");
     } else {
         _mem._size--;
         if (_mem._size != 0) {
@@ -144,10 +166,12 @@ void Vector<vector_type>::pop_front() {
         }
     }
 }
+
 template<typename vector_type>
 void Vector<vector_type>::pop_front_many(size_t count) {
     if (_mem._size < count) {
-        throw std::logic_error("ERROR: Popping (front) too many elements!");
+        throw std::logic_error(
+            "ERROR: Popping (front) too many elements!");
     } else {
         _mem._size -= count;
         if (_mem._size != 0) {
@@ -165,10 +189,12 @@ void Vector<vector_type>::pop_front_many(size_t count) {
         }
     }
 }
+
 template<typename vector_type>
 void Vector<vector_type>::pop_back() {
     if (_mem._size == 0) {
-        throw std::logic_error("ERROR: Empty vector! Can't pop back");
+        throw std::logic_error(
+            "ERROR: Empty vector! Can't pop back");
     } else {
         _mem._size--;
         if (_mem._size != 0) {
@@ -186,10 +212,12 @@ void Vector<vector_type>::pop_back() {
         }
     }
 }
+
 template<typename vector_type>
 void Vector<vector_type>::pop_back_many(size_t count) {
     if (_mem._size < count) {
-        throw std::logic_error("ERROR: Popping (back) too many elements!");
+        throw std::logic_error(
+            "ERROR: Popping (back) too many elements!");
     } else {
         _mem._size -= count;
         if (_mem._size != 0) {
@@ -207,10 +235,12 @@ void Vector<vector_type>::pop_back_many(size_t count) {
         }
     }
 }
+
 template<typename vector_type>
 void Vector<vector_type>::erase(size_t i) {
     if (i >= _mem._size) {
-        throw std::out_of_range("ERROR: Erase index out of range!");
+        throw std::out_of_range(
+            "ERROR: Erase index out of range!");
     } else {
         if (i == 0) {
             pop_front();
@@ -234,10 +264,13 @@ void Vector<vector_type>::erase(size_t i) {
         }
     }
 }
+
 template<typename vector_type>
-void Vector<vector_type>::erase_many(size_t i, size_t count) {
+void Vector<vector_type>::erase_many(
+    size_t i, size_t count) {
     if (i + count > _mem._size) {
-        throw std::logic_error("ERROR: Erasing too many elements!");
+        throw std::logic_error(
+            "ERROR: Erasing too many elements!");
     }
     for (int j = 0; j < count; j++) {
         erase(i);
@@ -253,7 +286,8 @@ void Vector<vector_type>::shrink_to_fit() {
 }
 
 template<typename vector_type>
-Vector<vector_type>& Vector<vector_type>::operator=(const Vector<vector_type>& other) noexcept {
+Vector<vector_type>& Vector<vector_type>::operator=(
+    const Vector<vector_type>& other) noexcept {
     if (this != &other) {
         _mem = other._mem;
         _front = other._front;
@@ -261,8 +295,10 @@ Vector<vector_type>& Vector<vector_type>::operator=(const Vector<vector_type>& o
     }
     return (*this);
 }
+
 template<typename vector_type>
-Vector<vector_type>& Vector<vector_type>::operator=(Vector<vector_type>&& other) noexcept {
+Vector<vector_type>& Vector<vector_type>::operator=(
+    Vector<vector_type>&& other) noexcept {
     if (this != &other) {
         _mem = std::move(other._mem);
         _front = other._front;
@@ -272,12 +308,16 @@ Vector<vector_type>& Vector<vector_type>::operator=(Vector<vector_type>&& other)
     }
     return (*this);
 }
+
 template<typename vector_type>
-vector_type Vector<vector_type>::operator[](size_t i) const noexcept {
+vector_type Vector<vector_type>::operator[](
+    size_t i) const noexcept {
     return _mem._data[(*this).get_mem_index(i)];
 }
+
 template<typename vector_type>
-vector_type& Vector<vector_type>::operator[](size_t i) noexcept {
+vector_type& Vector<vector_type>::operator[](
+    size_t i) noexcept {
     return _mem._data[(*this).get_mem_index(i)];
 }
 
@@ -285,12 +325,15 @@ template<typename vector_type>
 void quick_sort(Vector<vector_type>& vector) {
     quick_sort(vector._mem);
 }
+
 template<typename vector_type>
 void shuffle(Vector<vector_type>& vector) {
     shuffle(vector._mem);
 }
+
 template <typename vector_type>
-std::ostream& operator<< (std::ostream& out, const Vector<vector_type>& vector) {
+std::ostream& operator<< (
+    std::ostream& out, const Vector<vector_type>& vector) {
     out << "{ ";
     size_t size = vector.get_size();
     if (size != 0) {
@@ -301,9 +344,11 @@ std::ostream& operator<< (std::ostream& out, const Vector<vector_type>& vector) 
     }
     out << " }";
     return out;
-};
+}
+
 template <typename vector_type>
-std::istream& operator>> (std::istream& in, Vector<vector_type>& vector) {
+std::istream& operator>> (
+    std::istream& in, Vector<vector_type>& vector) {
     Vector<vector_type> temp;
     vector_type element;
     in >> element;
@@ -312,7 +357,7 @@ std::istream& operator>> (std::istream& in, Vector<vector_type>& vector) {
     }
     vector = std::move(temp);
     return in;
-};
+}
 
 template class Vector<double>;
 template std::ostream& operator<< (std::ostream& out, const Vector<double>& v1);
