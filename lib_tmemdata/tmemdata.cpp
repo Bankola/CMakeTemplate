@@ -1,3 +1,5 @@
+// Copyright 2024 Marina Usova
+
 #include "../lib_tmemdata/tmemdata.h"
 
 int calculate_capacity(size_t size) {
@@ -11,6 +13,7 @@ MemData<vector_type>::MemData(size_t size) {
     set_memory(size);
     _size = 0;
 }
+
 template <typename vector_type>
 MemData<vector_type>::MemData(std::initializer_list<vector_type> list) {	
     _data = nullptr;
@@ -19,6 +22,7 @@ MemData<vector_type>::MemData(std::initializer_list<vector_type> list) {
         _data[i] = *(list.begin() + i);
     }
 }
+
 template <typename vector_type>
 MemData<vector_type>::MemData(const vector_type* array, size_t size) {		
     _size = size;
@@ -28,6 +32,7 @@ MemData<vector_type>::MemData(const vector_type* array, size_t size) {
         _data[i] = array[i];
     }
 }
+
 template <typename vector_type>
 MemData<vector_type>::MemData(const MemData& other) {					
     _size = other._size;
@@ -37,6 +42,7 @@ MemData<vector_type>::MemData(const MemData& other) {
         _data[i] = other._data[i];
     }
 }
+
 template <typename vector_type>
 MemData<vector_type>::MemData(MemData&& other) noexcept {				
     _size = other._size;
@@ -63,6 +69,7 @@ void MemData<vector_type>::set_memory(size_t size) noexcept {
     }
     _data = new vector_type[_capacity];
 }
+
 template <typename vector_type>
 void MemData<vector_type>::reset_memory(size_t size, size_t start_index) {	
     if (start_index >= size) {
@@ -101,6 +108,7 @@ void MemData<vector_type>::reset_memory(size_t size, size_t start_index) {
     delete[]_data;
     _data = temp;
 }
+
 template <typename vector_type>
 void MemData<vector_type>::clear_memory() noexcept {					
     set_memory(0);
@@ -142,6 +150,7 @@ MemData<vector_type>& MemData<vector_type>::operator=(const MemData& other) noex
     }
     return *this;
 }
+
 template <typename vector_type>
 MemData<vector_type>& MemData<vector_type>::operator=(MemData&& other) noexcept {		
     if (this != &other) {
@@ -155,6 +164,7 @@ MemData<vector_type>& MemData<vector_type>::operator=(MemData&& other) noexcept 
     other._data = nullptr;
     return *this;
 }
+
 template <typename vector_type>
 bool MemData<vector_type>::operator==(const MemData& other) const noexcept {			
     if (_size != other._size) {
@@ -183,6 +193,7 @@ void quick_sort(MemData<vector_type>& md) {
     }
     quick_sort_recursive(md._data, 0, md._size - 1);
 }
+
 template <typename vector_type>
 void shuffle(MemData<vector_type>& md) {			
     if (md._size <= 1) {
@@ -211,6 +222,7 @@ int partition(vector_type* data, int left, int right) {
     }
     return i;
 }
+
 template <typename vector_type>
 void quick_sort_recursive(vector_type* data, int left, int right) {
     if (left < right) {

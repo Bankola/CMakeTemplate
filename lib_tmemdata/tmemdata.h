@@ -1,3 +1,5 @@
+// Copyright 2024 Marina Usova
+
 #pragma once
 #include <initializer_list>
 #include <iostream>
