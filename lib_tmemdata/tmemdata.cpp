@@ -1,6 +1,9 @@
-// Copyright 2024 Marina Usova
+// Copyright 2026 Ivan Trushkov
 
 #include "../lib_tmemdata/tmemdata.h"
+#include <random>
+#include <chrono>
+#include <utility>
 
 int calculate_capacity(size_t size) {
     size_t new_capacity = size / MEM_STEP;
@@ -73,7 +76,8 @@ void MemData<vector_type>::set_memory(size_t size) noexcept {
 template <typename vector_type>
 void MemData<vector_type>::reset_memory(size_t size, size_t start_index) {
     if (start_index >= size) {
-        throw std::invalid_argument("ERROR: Can't reset memory! start_index >= size");
+        throw std::invalid_argument(
+            "ERROR: Can't reset memory! start_index >= size");
     }
     size_t new_capacity = calculate_capacity(size);
     size_t old_capacity = _capacity;
@@ -136,7 +140,8 @@ void MemData<vector_type>::shrink_to_fit(size_t size, size_t start_index) {
 }
 
 template <typename vector_type>
-MemData<vector_type>& MemData<vector_type>::operator=(const MemData& other) noexcept {
+MemData<vector_type>& MemData<vector_type>::operator=(
+    const MemData& other) noexcept {
     if (this != &other) {
         _size = other._size;
         _capacity = other._capacity;
@@ -152,7 +157,8 @@ MemData<vector_type>& MemData<vector_type>::operator=(const MemData& other) noex
 }
 
 template <typename vector_type>
-MemData<vector_type>& MemData<vector_type>::operator=(MemData&& other) noexcept {
+MemData<vector_type>& MemData<vector_type>::operator=(
+    MemData&& other) noexcept {
     if (this != &other) {
         _size = other._size;
         _capacity = other._capacity;
@@ -199,9 +205,12 @@ void shuffle(MemData<vector_type>& md) {
     if (md._size <= 1) {
         return;
     }
-    srand(time(NULL));
+    static std::mt19937 gen(
+        static_cast<unsigned int>(
+            std::chrono::steady_clock::now().time_since_epoch().count()));
     for (size_t i = md._size - 1; i > 0; i--) {
-        size_t j = rand() % (i + 1);
+        std::uniform_int_distribution<size_t> dist(0, i);
+        size_t j = dist(gen);
         std::swap(md._data[i], md._data[j]);
     }
 }
