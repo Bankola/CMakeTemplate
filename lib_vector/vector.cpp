@@ -1,3 +1,5 @@
+// Copyright 2026 Ivan Trushkov
+
 #include "vector.h"
 
 template<typename vector_type>
@@ -7,8 +9,7 @@ Vector<vector_type>::Vector(size_t size) {
     _front = 0;
     if (size > 0) {
         _back = size - 1;
-    }
-    else {
+    } else {
         _back = 0;
     }
 }
@@ -19,8 +20,7 @@ Vector<vector_type>::Vector(std::initializer_list<vector_type> list) {
     _front = 0;
     if (_mem._size > 0) {
         _back = _mem._size - 1;
-    }
-    else {
+    } else {
         _back = 0;
     }
 }
@@ -31,8 +31,7 @@ Vector<vector_type>::Vector(vector_type* array, size_t size) {
     _front = 0;
     if (_mem._size > 0) {
         _back = _mem._size - 1;
-    }
-    else {
+    } else {
         _back = 0;
     }
 }
@@ -93,15 +92,12 @@ template<typename vector_type>
 void Vector<vector_type>::insert(vector_type element, size_t i) {
     if (i > _mem._size) {
         throw std::out_of_range("ERROR: Insert index out of range!");
-    }
-    else {
+    } else {
         if (i == 0) {
             push_front(element);
-        }
-        else if (i == _mem._size) {
+        } else if (i == _mem._size) {
             push_back(element);
-        }
-        else {
+        } else {
             _mem._size++;
             _back = (_back + 1) % _mem._capacity;
             for (int j = _mem._size - 1; j > i; j--) {
@@ -120,8 +116,7 @@ template<typename vector_type>
 void Vector<vector_type>::insert_many(vector_type* elements, size_t size, size_t i) {
     if (i > _mem._size) {
         throw std::out_of_range("ERROR: Insert (many) index out of range!");
-    }
-    else {
+    } else {
         for (int j = 0; j < size; j++) {
             insert(elements[j], i + j);
         }
@@ -132,13 +127,11 @@ template<typename vector_type>
 void Vector<vector_type>::pop_front() {
     if (_mem._size == 0) {
         throw std::logic_error("ERROR: Empty vector! Can't pop front");
-    }
-    else {
+    } else {
         _mem._size--;
         if (_mem._size != 0) {
             _front = (_front + 1) % _mem._capacity;
-        }
-        else {
+        } else {
             _front = 0;
             _back = 0;
         }
@@ -155,13 +148,11 @@ template<typename vector_type>
 void Vector<vector_type>::pop_front_many(size_t count) {
     if (_mem._size < count) {
         throw std::logic_error("ERROR: Popping (front) too many elements!");
-    }
-    else {
+    } else {
         _mem._size -= count;
         if (_mem._size != 0) {
             _front = (_front + count) % _mem._capacity;
-        }
-        else {
+        } else {
             _front = 0;
             _back = 0;
         }
@@ -178,13 +169,11 @@ template<typename vector_type>
 void Vector<vector_type>::pop_back() {
     if (_mem._size == 0) {
         throw std::logic_error("ERROR: Empty vector! Can't pop back");
-    }
-    else {
+    } else {
         _mem._size--;
         if (_mem._size != 0) {
             _back = (_back + _mem._capacity - 1) % _mem._capacity;
-        }
-        else {
+        } else {
             _front = 0;
             _back = 0;
         }
@@ -201,13 +190,11 @@ template<typename vector_type>
 void Vector<vector_type>::pop_back_many(size_t count) {
     if (_mem._size < count) {
         throw std::logic_error("ERROR: Popping (back) too many elements!");
-    }
-    else {
+    } else {
         _mem._size -= count;
         if (_mem._size != 0) {
             _back = (_back + _mem._capacity - count) % _mem._capacity;
-        }
-        else {
+        } else {
             _front = 0;
             _back = 0;
         }
@@ -224,15 +211,12 @@ template<typename vector_type>
 void Vector<vector_type>::erase(size_t i) {
     if (i >= _mem._size) {
         throw std::out_of_range("ERROR: Erase index out of range!");
-    }
-    else {
+    } else {
         if (i == 0) {
             pop_front();
-        }
-        else if (i == _mem._size - 1) {
+        } else if (i == _mem._size - 1) {
             pop_back();
-        }
-        else {
+        } else {
             _back = (_back - 1 + _mem._capacity) % _mem._capacity;
             for (int j = i; j < _mem._size - 1; j++) {
                 (*this)[j] = (*this)[j + 1];
@@ -319,7 +303,7 @@ std::ostream& operator<< (std::ostream& out, const Vector<vector_type>& vector) 
     return out;
 };
 template <typename vector_type>
-std::istream& operator>> (std::istream& in, Vector<vector_type>& vector) {	
+std::istream& operator>> (std::istream& in, Vector<vector_type>& vector) {
     Vector<vector_type> temp;
     vector_type element;
     in >> element;

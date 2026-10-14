@@ -1,3 +1,5 @@
+// Copyright 2026 Ivan Trushkov
+
 #pragma once
 #include <iostream>
 #include<cstdlib>
@@ -33,16 +35,14 @@ public:
     inline vector_type get_front() const {
         if (_mem._size != 0) {
             return (_mem._data)[_front];
-        }
-        else {
+        } else {
             throw std::logic_error("ERROR: Vector is empty! Can't get front");
         }
     }
     inline vector_type get_back() const {
         if (_mem._size != 0) {
             return (_mem._data)[_back];
-        }
-        else {
+        } else {
             throw std::logic_error("ERROR: Vector is empty! Can't get back");
         }
     }
@@ -56,16 +56,14 @@ public:
     inline vector_type& front_ref() {
         if (_mem._size != 0) {
             return (_mem._data)[_front];
-        }
-        else {
+        } else {
             throw std::logic_error("ERROR: Vector is empty! Can't set front");
         }
     }
     inline vector_type& back_ref() {
         if (_mem._size != 0) {
             return (_mem._data)[_back];
-        }
-        else {
+        } else {
             throw std::logic_error("ERROR: Vector is empty! Can't set back");
         }
     }
@@ -73,7 +71,7 @@ public:
     void push_front(vector_type) noexcept;
     void push_front_many(vector_type*, size_t) noexcept;
     void push_back(vector_type) noexcept;
-    void push_back_many(vector_type*, size_t) noexcept;	
+    void push_back_many(vector_type*, size_t) noexcept;
     void insert(vector_type, size_t);
     void insert_many(vector_type*, size_t, size_t);
 

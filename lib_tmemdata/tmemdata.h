@@ -1,4 +1,4 @@
-// Copyright 2024 Marina Usova
+// Copyright 2026 Ivan Trushkov
 
 #pragma once
 #include <initializer_list>
@@ -20,7 +20,7 @@ class MemData {
     size_t _capacity;
 
 public:
-    MemData(size_t size = 0);
+    explicit MemData(size_t size = 0);
     MemData(std::initializer_list<vector_type>);
     MemData(const vector_type*, size_t);
     MemData(const MemData&);
@@ -54,8 +54,7 @@ public:
     inline void set_size(size_t size) {
         if (size > _capacity) {
             throw std::invalid_argument("ERROR: Size is bigger than capacity!");
-        }
-        else {
+        } else {
             _size = size;
         }
     }
