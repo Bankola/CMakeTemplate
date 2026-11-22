@@ -39,7 +39,7 @@ class MemData {
 
   inline vector_type* const get_data_changeable() noexcept { return _data; }
 
-  void set_memory(size_t) noexcept;
+  void set_memory(size_t size_t) noexcept;
   void reset_memory(size_t size, size_t start_index = 0);
   void clear_memory() noexcept;
   void shrink_to_fit(size_t size, size_t start_index = 0);
