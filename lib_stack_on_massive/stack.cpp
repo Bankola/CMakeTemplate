@@ -1,5 +1,5 @@
-// Copyright 2026 Trushkov Ivan
-#include "stack.h"
+// Copyright 2026 Ivan Trushkov
+#include "../lib_stack_on_massive/stack.h"
 
 template <class T>
 TStackOnMass<T>::TStackOnMass(std::size_t size)

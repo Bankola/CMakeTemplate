@@ -1,4 +1,8 @@
-// Copyright 2026 Trushkov Ivan
+// Copyright 2026 Ivan Trushkov
+
+#ifndef LIB_STACK_ON_MASSIVE_STACK_H_
+#define LIB_STACK_ON_MASSIVE_STACK_H_
+
 #include <cstddef>
 #include <stdexcept>
 
@@ -20,3 +24,4 @@ class TStackOnMass {
   T pop();
   T top();
 };
+#endif  // LIB_STACK_ON_MASSIVE_STACK_H_
