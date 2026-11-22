@@ -1,7 +1,7 @@
 // Copyright 2026 Ivan Trushkov
 
-#ifndef LIB_QUEUE_ON_MASS_QUEUE_ON_MASS_H_
-#define LIB_QUEUE_ON_MASS_QUEUE_ON_MASS_H_
+#ifndef LIB_QUEUE_ON_MASSIVE_QUEUE_H_
+#define LIB_QUEUE_ON_MASSIVE_QUEUE_H_
 
 #include <cstddef>
 #include <stdexcept>
@@ -31,6 +31,6 @@ class TQueueOnMass {
   inline T& back();
 };
 
-#include "queue.cpp"
+#include "../lib_queue_on_massive/queue.cpp"
 
-#endif  // LIB_QUEUE_ON_MASS_QUEUE_ON_MASS_H_
+#endif  // LIB_QUEUE_ON_MASSIVE_QUEUE_H_

@@ -1,9 +1,6 @@
 // Copyright 2026 Ivan Trushkov
 
-#ifndef LIB_QUEUE_ON_MASS_QUEUE_ON_MASS_CPP_
-#define LIB_QUEUE_ON_MASS_QUEUE_ON_MASS_CPP_
-
-#include "queue.h"
+#include "../lib_queue_on_massive/queue.h"
 
 template <class T>
 TQueueOnMass<T>::TQueueOnMass(size_t size) {
@@ -103,5 +100,3 @@ inline T& TQueueOnMass<T>::back() {
   }
   return _data[(_head + _count - 1) % _size];
 }
-
-#endif  // LIB_QUEUE_ON_MASS_QUEUE_ON_MASS_CPP_
