@@ -3,7 +3,7 @@
 
 #include <stdexcept>
 
-#include "stack.h"
+#include "../lib_stack_on_massive/stack.h"
 
 TEST(StackInit, NewStackIsEmpty) {
   TStackOnMass<int> s(3);
@@ -13,7 +13,7 @@ TEST(StackInit, NewStackIsEmpty) {
 
 TEST(StackInit, NewStackNotFullUntilCapacity) {
   TStackOnMass<int> s(2);
-  EXPECT_FALSE(s.is_full());  
+  EXPECT_FALSE(s.is_full());
 }
 
 TEST(StackPush, PushMakesNonEmpty) {

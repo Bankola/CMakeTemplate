@@ -1,8 +1,10 @@
 // Copyright 2026 Ivan Trushkov
 
 #include <gtest/gtest.h>
-
+#include <random>
 #include <sstream>
+#include <utility>
+
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
@@ -115,8 +117,6 @@ TEST(ClassMemData, can_is_empty) {
   EXPECT_FALSE(D6.is_empty());
   EXPECT_FALSE(D7.is_empty());
 }
-
-// TEST(ClassMemData, can_is_full) { //убрали, лишний
 
 TEST(ClassMemData, can_set_memory_for_empty) {
   MemData<double> D1;
@@ -337,15 +337,17 @@ TEST(FunctionsForMemData, can_quick_sort) {
   double example1[6] = {1, 2, 3, 4, 5, 6};
   double example2[5] = {2, 2, 2, 2, 2};
   double example3[6] = {1, 2, 2, 3, 4, 100000};
-  srand(time(NULL));
+  std::mt19937 gen(static_cast<unsigned int>(time(nullptr)));
+  std::uniform_int_distribution<size_t> size_dist(1, 100);
+  std::uniform_real_distribution<double> val_dist(-100.0, 100.0);
 
-  size_t random_size = (static_cast<size_t>(rand() % 100)) + 1;
+  size_t random_size = size_dist(gen);
   double* random_array = new double[random_size];
 
   for (size_t i = 0; i < random_size; i++) {
-    double zero_to_one = static_cast<double>(rand()) / RAND_MAX;
-    random_array[i] = zero_to_one * 200.0 - 100.0;
+    random_array[i] = val_dist(gen);
   }
+
   MemData<double> DR(random_array, random_size);
   quick_sort(DR);
 
