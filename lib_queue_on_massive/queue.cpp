@@ -100,3 +100,6 @@ inline T& TQueueOnMass<T>::back() {
   }
   return _data[(_head + _count - 1) % _size];
 }
+
+template class TQueueOnMass<int>;
+template class TQueueOnMass<double>;

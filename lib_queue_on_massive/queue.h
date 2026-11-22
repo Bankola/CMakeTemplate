@@ -31,6 +31,4 @@ class TQueueOnMass {
   inline T& back();
 };
 
-#include "../lib_queue_on_massive/queue.cpp"
-
 #endif  // LIB_QUEUE_ON_MASSIVE_QUEUE_H_
