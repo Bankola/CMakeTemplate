@@ -13,7 +13,7 @@ class Vector {
   size_t _back;
 
  public:
-  Vector(size_t size = 0);
+  explicit Vector(size_t size = 0);
   Vector(std::initializer_list<vector_type>);
   Vector(vector_type*, size_t);
   Vector(const Vector<vector_type>&);
@@ -77,7 +77,7 @@ class Vector {
   Vector<vector_type>& operator=(const Vector<vector_type>&) noexcept;
   Vector<vector_type>& operator=(Vector<vector_type>&&) noexcept;
   vector_type operator[](size_t) const noexcept;
-  vector_type& operator[](size_t) noexcept;
+  vector_type& operator[](size_t size_t) noexcept;
 
   template <typename vector_type>
   friend std::ostream& operator<<(std::ostream&, const Vector<vector_type>&);
