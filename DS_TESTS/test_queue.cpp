@@ -149,3 +149,15 @@ TEST(QueueCopy, SelfAssignmentSafe) {
   a = a;
   EXPECT_EQ(a.front(), 5);
 }
+
+TEST(Queue, CheckCircle) {
+  TQueueOnMass<int> a(3);
+  a.push(10);
+  a.push(11);
+  a.push(12);
+  a.pop();
+  a.push(13);
+  EXPECT_EQ(a.pop(), 11);
+  EXPECT_EQ(a.pop(), 12);
+  EXPECT_EQ(a.pop(), 13);
+}

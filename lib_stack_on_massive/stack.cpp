@@ -61,7 +61,7 @@ T TStackOnMass<T>::pop() {
 }
 
 template <class T>
-T TStackOnMass<T>::top() {
+T& TStackOnMass<T>::top() {
   if (is_empty()) {
     throw std::out_of_range{"ERROR: Stack is empty, no top"};
   }

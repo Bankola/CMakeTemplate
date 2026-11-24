@@ -133,3 +133,10 @@ TEST(StackCopy, SelfAssignmentSafe) {
   a = a;
   EXPECT_EQ(a.top(), 5);
 }
+
+TEST(Stack, TopFunction) { 
+  TStackOnMass<int> a(3);
+  a.push(5);
+  a.top() = 10;
+  EXPECT_EQ(a.top(), 10);
+}

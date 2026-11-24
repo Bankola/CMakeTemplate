@@ -22,6 +22,6 @@ class TStackOnMass {
   bool is_full() const noexcept;
   void push(const T& val);
   T pop();
-  T top();
+  T& top();
 };
 #endif  // LIB_STACK_ON_MASSIVE_STACK_H_
