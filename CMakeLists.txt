@@ -19,6 +19,7 @@ add_subdirectory(lib_tmemdata)
 add_subdirectory(DS_APP)                # подключаем дополнительный CMakeLists.txt из подкаталога с именем main
 add_subdirectory(lib_queue_on_massive)
 add_subdirectory(lib_stack_on_massive)
+add_subdirectory(lib_disjoint_set_union)
 
 option(BTEST "build test?" ON)        # указываем подключаем ли google-тесты (ON или YES) или нет (OFF или NO)
 
