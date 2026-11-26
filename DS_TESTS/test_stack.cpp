@@ -134,7 +134,7 @@ TEST(StackCopy, SelfAssignmentSafe) {
   EXPECT_EQ(a.top(), 5);
 }
 
-TEST(Stack, TopFunction) { 
+TEST(Stack, TopFunction) {
   TStackOnMass<int> a(3);
   a.push(5);
   a.top() = 10;

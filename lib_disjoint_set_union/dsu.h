@@ -1,6 +1,6 @@
 // Copyright 2026 Ivan Trushkov
 
-#ifndef LIB_DSU_DSU_H_
-#define LIB_DSU_DSU_H_
+#ifndef LIB_DISJOINT_SET_UNION_DSU_H_
+#define LIB_DISJOINT_SET_UNION_DSU_H_
 
-#endif
+#endif  // LIB_DISJOINT_SET_UNION_DSU_H_
