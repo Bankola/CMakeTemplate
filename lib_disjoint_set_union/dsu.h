@@ -24,6 +24,4 @@ class DSU {
   const size_t* get_rank() const noexcept;
   const size_t* get_data() const noexcept;
 };
-
-#include "../lib_disjoint_set_union/dsu.cpp"
 #endif  // LIB_DISJOINT_SET_UNION_DSU_H_
