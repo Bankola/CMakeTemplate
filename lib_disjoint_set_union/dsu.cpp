@@ -5,35 +5,50 @@ DSU::DSU() {
   _size = 9;
   _data = new size_t[_size];
   _rank = new size_t[_size];
-  for (int i = 0; i < _size; i++) {
+  for (size_t i = 0; i < _size; i++) {
     _data[i] = i;
   }
 
-  for (int i = 0; i < _size; i++) {
+  for (size_t i = 0; i < _size; i++) {
     _rank[i] = 0;
   }
 }
-DSU::DSU(int size) {
+DSU::DSU(size_t size) {
   _size = size;
   _rank = new size_t[_size];
   _data = new size_t[_size];
-  for (int i = 0; i < _size; i++) {
+  for (size_t i = 0; i < _size; i++) {
     _data[i] = i;
   }
 
-  for (int i = 0; i < _size; i++) {
+  for (size_t i = 0; i < _size; i++) {
     _rank[i] = 0;
   }
 }
 
-void DSU::unions(int num1, int num2) {
-        
+DSU::~DSU() {
+  delete[] _rank;
+  delete[] _data;
 }
 
-int DSU::find(int elem) { //DO NOT WORKING, RECURSION IS UNSTOPABLE
-  int i = _data[elem - 1];
-  if (_data[i] != i) {
-    find(i);
-  } 
-  return _data[i];
+size_t DSU::get_size() const noexcept { return _size; }
+
+const size_t* DSU::get_rank() const noexcept { return _rank; }
+
+const size_t* DSU::get_data() const noexcept { return _data; }
+
+void DSU::unions(int num1, int num2) { return; }
+
+int DSU::find(size_t elem) {
+  if (elem == 0 || elem > _size) {
+    throw std::logic_error("Out of range!");
+  }
+  elem--;
+  if (_data[elem] == elem) {
+    return elem + 1;
+  } else {
+    size_t tmp = find(_data[elem] + 1) - 1;
+    _data[elem] = tmp;
+    return tmp + 1;
+  }
 }
